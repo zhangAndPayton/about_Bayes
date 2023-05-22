@@ -25,3 +25,34 @@ $$
 
 但是，问题的关键在于：在现实中，对一个区域的搜索并不总是完全有效的，对一个区域的某次搜索可能需要一个搜索有效性分数来描述，可以将之称为搜索有效性概率SEP。
 
+### 2. 一些编程基础/技巧
+
+*这一部分将描述阅读过程中看到的不熟悉的编程技巧。需要说明的是，我们期望的流程是先阅读整个项目（至少是一个完整的模块）的代码，然后尝试自己去进行实现，而不是看到书上的源代码、把它们抄写在自己的IDE中。*
+
+#### （1）
+
+```python
+print('something about error', file=sys.stderr)
+sys.exit(1)
+```
+
+输出一条错误信息，然后用sys.exit()退出程序。1代表程序以错误方式终止；file=stderr参数会在Python解释器窗口中按照“错误红”文本颜色进行打印。
+
+#### (2)
+
+```python
+random.triangular(low, high, mode)
+```
+
+用于生成三角分布，mode默认值是（low+high）/2。
+
+![image.png](assets/image.png?t=1684744290244#pic_center)
+
+#### (3)
+
+```python
+itertools.product(x, y)
+```
+
+通过Python标准库itertools来生成序列x和y的网格坐标，返回一个迭代器。
+
