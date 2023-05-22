@@ -44,6 +44,17 @@ class Search():
 
         pass
 
+    def updateByBayes(self):
+        """Based on Bayes to update the probabilities of three search region"""
+
+        pass
+
+
+def printMenu():
+    """Print a menu for user, by the way, we have two search parties"""
+
+    pass
+
 
 if __name__ == '__main__':
     pass
