@@ -2,9 +2,9 @@ import random
 import matplotlib.pyplot as plt
 
 
-LOW = 0
-HIGH = 9
-MODE = [2, 4, 6]
+LOW = 1
+HIGH = 4
+MODE = [2, 2, 2]
 
 NUMS = 10000
 

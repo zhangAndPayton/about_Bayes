@@ -7,7 +7,7 @@ import cv2
 PATH_OF_MAP = r"cape_python.png"
 
 SEARCH_REGION = ((130, 265, 180, 315), (80, 255, 130, 305), (105, 205, 155, 255), (55, 195, 105, 245))
-
+P = (0.2, 0.4, 0.3, 0.1)
 
 class Search():
 
@@ -23,12 +23,12 @@ class Search():
             self.searchRegion.append(self.map[SEARCH_REGION[i][1]: SEARCH_REGION[i][3],
                                      SEARCH_REGION[i][0]: SEARCH_REGION[i][2]])
 
-        self.p = [0.2, 0.5, 0.3]
+        self.p = P
 
-        self.e = [0, 0, 0]
+        self.e = [0 for _ in range(len(self.p))]
 
         # 坐标的存储需要使用可变数据类型。
-        self.sailor = [0, 0]
+        self.sailor = 0
         self.regionOfSailor = 0
 
     def getMap(self, lastSearch=[0, 0]):
@@ -62,7 +62,26 @@ class Search():
         cv2.imshow("Search Map", self.map)
         cv2.waitKey()
 
+    def getSailorPosition(self):
+
+        xInRegion = np.random.choice(self.searchRegion[0].shape[1], 1)
+        yInRegion = np.random.choice(self.searchRegion[0].shape[0], 1)
+
+        region = round(random.triangular(1, 4, 2))
+
+        for i in range(0, len(SEARCH_REGION)):
+            if (i + 1) == region:
+                x = xInRegion + SEARCH_REGION[i][0]
+                y = yInRegion + SEARCH_REGION[i][1]
+
+        self.regionOfSailor = region
+        self.sailor = [x, y]
 
 if __name__ == "__main__":
     task = Search()
-    task.getMap([2, 4])
+
+
+
+
+
+
