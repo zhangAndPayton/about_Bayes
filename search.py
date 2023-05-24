@@ -7,7 +7,7 @@ import cv2
 PATH_OF_MAP = r"cape_python.png"
 
 SEARCH_REGION = ((130, 265, 180, 315), (80, 255, 130, 305), (105, 205, 155, 255), (55, 195, 105, 245))
-P = (0.2, 0.4, 0.3, 0.1)
+P = [0.2, 0.4, 0.3, 0.1]
 
 CLEAR_DAY = "c"
 RAINY_DAY = "r"
@@ -88,7 +88,7 @@ class Search():
                 y = yInRegion + SEARCH_REGION[i][1]
 
         self.regionOfSailor = region
-        self.sailor = [x, y]
+        self.sailor = [int(x), int(y)]
 
     def SEPWithWeather(self):
 
@@ -102,10 +102,10 @@ class Search():
                 if self.e[i] > 0.3:
                     self.weather[i] = CLEAR_DAY
 
-    def search(self,region):
+    def search(self, region):
 
-        xInRegion = range(len(SEARCH_REGION[0][1]))
-        yInRegion = range(len(SEARCH_REGION[0][0]))
+        xInRegion = range(self.searchRegion[0].shape[1])
+        yInRegion = range(self.searchRegion[0].shape[0])
 
         xAndy = list(itertools.product(xInRegion, yInRegion))
         random.shuffle(xAndy)
@@ -113,13 +113,11 @@ class Search():
         sailorInRegion = (self.sailorInRegion[0], self.sailorInRegion[1])
 
         if region == self.regionOfSailor and sailorInRegion in xAndyWithSEP:
-            print(f"目标已找到，位于{self.sailor}.")
             self.flag = True
-            self.getMap()
-        else:
-            print("未发现目标.")
 
-    def getNewP:
+        return xAndyWithSEP
+
+    def getNewP(self):
 
         denom = 0
         for i in range(len(self.p)):
