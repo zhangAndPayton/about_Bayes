@@ -68,8 +68,8 @@ def main():
             for j in range(len(task.e)):
                 if j == (regionOne - 1):
                     # 两次搜索在同一位置进行，需要计算新的SEP（参考README.md）;
-                    task.e[j] = (len(set(searchRegionOne + searchRegionTwo))) / \
-                                ((task.searchRegion[0].shape[0] * task.searchRegion[0].shape[1])**2)
+                    task.e[j] = len(set(searchRegionOne + searchRegionTwo)) / 2500
+
                 else:
                     # 将其余区域的SEP还原为0;
                     task.e[j] = 0
@@ -83,6 +83,9 @@ def main():
                     # 将其余区域的SEP还原为0;
                     task.e[j] = 0
 
+        # 在计算完实际的SEP后更新概率;
+        task.getNewP()
+
         if task.flag == True:
             print(f"耗时{day}天成功找到目标，其坐标位于: {task.sailor}.")
             # 找到之后更新一下地图;
@@ -90,7 +93,6 @@ def main():
             sys.exit()
         else:
             # 根据实际搜索的SEP重新计算下一次搜索的概率并更新在Search类中;
-            task.getNewP()
             print(f"在第{day}天时未能成功找到目标.")
 
 if __name__ == "__main__":

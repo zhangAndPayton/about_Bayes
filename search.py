@@ -84,8 +84,8 @@ class Search():
 
         # 若已经找到目标，则利用全局坐标标出目标位置;
         if self.flag == True:
-            cv2.putText(self.map, "*", (self.sailor[0], self.sailor[1]), font, lineWidth, red)
-
+            #cv2.putText(self.map, "*", (self.sailor[0], self.sailor[1]), font, lineWidth, red)
+            cv2.drawMarker(self.map, (self.sailor[0], self.sailor[1]), red, markerType=0)
         cv2.imshow("Search Map", self.map)
         cv2.waitKey()
 
@@ -160,8 +160,6 @@ class Search():
 
 if __name__ == "__main__":
     task = Search()
-
-
 
 
 
